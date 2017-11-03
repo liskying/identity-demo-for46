@@ -8,11 +8,19 @@ using System.Threading.Tasks;
 
 namespace Microsoft.AspNet.Identity
 {
-    internal static class AsyncHelper
+    /// <summary>
+    /// 异步任务模型异步执行辅助方法
+    /// </summary>
+    public static class AsyncHelper
     {
         private static readonly TaskFactory _myTaskFactory = new TaskFactory(CancellationToken.None,
             TaskCreationOptions.None, TaskContinuationOptions.None, TaskScheduler.Default);
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="func"></param>
+        /// <returns></returns>
         public static TResult RunSync<TResult>(Func<Task<TResult>> func)
         {
             var cultureUi = CultureInfo.CurrentUICulture;
@@ -24,7 +32,10 @@ namespace Microsoft.AspNet.Identity
                 return func();
             }).Unwrap().GetAwaiter().GetResult();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="func"></param>
         public static void RunSync(Func<Task> func)
         {
             var cultureUi = CultureInfo.CurrentUICulture;

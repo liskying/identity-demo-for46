@@ -35,7 +35,7 @@
     <DocumentationFile>bin\Release\Microsoft.AspNet.Identity.EntityFramework.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>true</DelaySign>
@@ -63,6 +63,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IdentityResources.zh-cn.Designer.cs">
+      <DependentUpon>IdentityResources.zh-cn.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RoleStore.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="UserStore.cs" />
@@ -92,6 +97,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="IdentityResources.zh-cn.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IdentityResources.zh-cn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="IdentityResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IdentityResources.Designer.cs</LastGenOutput>

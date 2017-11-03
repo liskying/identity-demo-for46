@@ -192,15 +192,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -292,6 +283,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.AspNet.Identity\Microsoft.AspNet.Identity.Core\Microsoft.AspNet.Identity.Core.csproj">
+      <Project>{d2f24972-0f56-4c18-bd65-c26a320a0c68}</Project>
+      <Name>Microsoft.AspNet.Identity.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.AspNet.Identity\Microsoft.AspNet.Identity.EntityFramework\Microsoft.AspNet.Identity.EntityFramework.csproj">
+      <Project>{d7298dad-ab04-4502-9567-0461d0ad059e}</Project>
+      <Name>Microsoft.AspNet.Identity.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.AspNet.Identity\Microsoft.AspNet.Identity.Owin\Microsoft.AspNet.Identity.Owin.csproj">
+      <Project>{943170eb-f4e7-4a6d-989e-2cf6c681dd89}</Project>
+      <Name>Microsoft.AspNet.Identity.Owin</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

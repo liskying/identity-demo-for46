@@ -2,6 +2,9 @@
 
 namespace Microsoft.AspNet.Identity
 {
+    /// <summary>
+    /// 
+    /// </summary>
     // Extension methods for IIdentityMessageService
     public static class IIdentityMessageServiceExtensions
     {

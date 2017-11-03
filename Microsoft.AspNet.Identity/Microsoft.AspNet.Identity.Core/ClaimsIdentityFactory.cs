@@ -36,10 +36,15 @@ namespace Microsoft.AspNet.Identity
         where TUser : class, IUser<TKey>
         where TKey : IEquatable<TKey>
     {
-        internal const string IdentityProviderClaimType =
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string IdentityProviderClaimType =
             "http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider";
-
-        internal const string DefaultIdentityProviderClaimValue = "ASP.NET Identity";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DefaultIdentityProviderClaimValue = "ASP.NET Identity";
 
         /// <summary>
         ///     Constructor
