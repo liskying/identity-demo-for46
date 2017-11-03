@@ -1,0 +1,16 @@
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll.config
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.EntityFramework.XML
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.EntityFramework.pdb
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\EntityFramework.dll
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\EntityFramework.SqlServer.dll
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.Core.dll
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.Core.pdb
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\Microsoft.AspNet.Identity.Core.xml
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\EntityFramework.xml
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\bin\Release\EntityFramework.SqlServer.xml
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\obj\Release\Microsoft.AspNet.Identity.EntityFramework.csprojResolveAssemblyReference.cache
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\obj\Release\Microsoft.AspNet.Identity.EntityFramework.IdentityResources.resources
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\obj\Release\Microsoft.AspNet.Identity.EntityFramework.csproj.GenerateResource.Cache
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\obj\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\TYM\同岩基础框架\trunk\Aspnetidentity\Aspnetidentity-2.0\src\Microsoft.AspNet.Identity.EntityFramework\obj\Release\Microsoft.AspNet.Identity.EntityFramework.pdb
