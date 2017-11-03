@@ -10,6 +10,9 @@ namespace identity_demo_for46.Models
         public string Email { get; set; }
     }
 
+    /// <summary>
+    /// 登录回调地址模型
+    /// </summary>
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }

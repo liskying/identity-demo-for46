@@ -7,6 +7,8 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using identity_demo_for46.Models;
 using Microsoft.Owin.Security.WeChat;
+using Microsoft.Owin.Security.Tencent.QQ;
+using Microsoft.Owin.Security;
 
 namespace identity_demo_for46
 {
@@ -66,8 +68,15 @@ namespace identity_demo_for46
             //});
 
             //app.UseWeChatAuthentication(new WeChatAuthenticationOptions() {
-                
+
             //});
+
+            //app.UseTencentAuthentication(new TencentAuthenticationOptions
+            //{
+            //    AppId = "1106442119",
+            //    AppKey = "BLVew9TMjo9y4bpX"
+            //});
+
         }
     }
 }

@@ -4,12 +4,136 @@
         <name>Microsoft.AspNet.Identity.Core</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.AspNet.Identity.IIdentityMessageServiceExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Microsoft.AspNet.Identity.IIdentityMessageServiceExtensions.Send(Microsoft.AspNet.Identity.IIdentityMessageService,Microsoft.AspNet.Identity.IdentityMessage)">
             <summary>
             Sync method to send the IdentityMessage
             </summary>
             <param name="service"></param>
             <param name="message"></param>
+        </member>
+        <member name="T:Microsoft.AspNet.Identity.TaskExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.WithCurrentCulture``1(System.Threading.Tasks.Task{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.WithCurrentCulture(System.Threading.Tasks.Task)">
+            <summary>
+            
+            </summary>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.#ctor(System.Threading.Tasks.Task{`0})">
+            <summary>
+            
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.GetAwaiter">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.IsCompleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.GetResult">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.OnCompleted(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="continuation"></param>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.UnsafeOnCompleted(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="continuation"></param>
+        </member>
+        <member name="T:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter.#ctor(System.Threading.Tasks.Task)">
+            <summary>
+            
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter.GetAwaiter">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter.IsCompleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter.GetResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter.OnCompleted(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="continuation"></param>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter.UnsafeOnCompleted(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="continuation"></param>
+        </member>
+        <member name="T:Microsoft.AspNet.Identity.AsyncHelper">
+            <summary>
+            异步任务模型异步执行辅助方法
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.AsyncHelper.RunSync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.AsyncHelper.RunSync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            
+            </summary>
+            <param name="func"></param>
         </member>
         <member name="T:Microsoft.AspNet.Identity.IIdentityMessageService">
             <summary>
@@ -1522,6 +1646,16 @@
             <typeparam name="TUser"></typeparam>
             <typeparam name="TKey"></typeparam>
         </member>
+        <member name="F:Microsoft.AspNet.Identity.ClaimsIdentityFactory`2.IdentityProviderClaimType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNet.Identity.ClaimsIdentityFactory`2.DefaultIdentityProviderClaimValue">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Microsoft.AspNet.Identity.ClaimsIdentityFactory`2.#ctor">
             <summary>
                 Constructor
@@ -2307,6 +2441,15 @@
                 Remove a user's password
             </summary>
             <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNet.Identity.UserManager`2.UpdatePassword(Microsoft.AspNet.Identity.IUserPasswordStore{`0,`1},`0,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="passwordStore"></param>
+            <param name="user"></param>
+            <param name="newPassword"></param>
             <returns></returns>
         </member>
         <member name="M:Microsoft.AspNet.Identity.UserManager`2.VerifyPasswordAsync(Microsoft.AspNet.Identity.IUserPasswordStore{`0,`1},`0,System.String)">

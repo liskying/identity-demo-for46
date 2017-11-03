@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using identity_demo_for46.Models;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace identity_demo_for46
 {
@@ -22,6 +24,35 @@ namespace identity_demo_for46
         public Task SendAsync(IdentityMessage message)
         {
             // 在此处插入电子邮件服务可发送电子邮件。
+            var emailMessage = new MimeMessage();
+
+            emailMessage.From.Add(new MailboxAddress("Liwenxue", "liwenxuetest@163.com"));
+            emailMessage.To.Add(new MailboxAddress("Find PWD", message.Destination));
+            emailMessage.Subject = message.Subject;
+            emailMessage.Body = new TextPart("plain") { Text = message.Body };
+
+            try
+            {
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.163.com", 25, false);
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    client.LocalDomain = "tjgeo.cn";
+
+                    //client.LocalDomain = "localhost";
+                    //client.ConnectAsync("smtp.163.com", 25, SecureSocketOptions.None).ConfigureAwait(true);
+
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                    client.Authenticate("liwenxuetest@163.com", "liwen1012");
+
+                    client.Send(emailMessage);
+                    client.Disconnect(true);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return Task.FromResult(0);
         }
     }
