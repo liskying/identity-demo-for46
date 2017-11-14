@@ -132,7 +132,7 @@ namespace Microsoft.AspNet.Identity.Owin
                     return stamp == "";
                 }
             }
-                // ReSharper disable once EmptyGeneralCatchClause
+            // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
                 // Do not leak exception
