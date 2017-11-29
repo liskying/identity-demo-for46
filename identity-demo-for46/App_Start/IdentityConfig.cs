@@ -39,9 +39,6 @@ namespace identity_demo_for46
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
                     client.LocalDomain = "tjgeo.cn";
 
-                    //client.LocalDomain = "localhost";
-                    //client.ConnectAsync("smtp.163.com", 25, SecureSocketOptions.None).ConfigureAwait(true);
-
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                     client.Authenticate("liwenxuetest@163.com", "liwen1012");
 
@@ -78,10 +75,12 @@ namespace identity_demo_for46
 
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static ApplicationUserManager Create(
+            IdentityFactoryOptions<ApplicationUserManager> options,
+            IOwinContext context)
         {
-
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            IUserStore<ApplicationUser> store = new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>());
+            var manager = new ApplicationUserManager(store);
             // 配置用户名的验证逻辑
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -101,7 +100,7 @@ namespace identity_demo_for46
 
             // 配置用户锁定默认值
             manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromDays(1);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
 

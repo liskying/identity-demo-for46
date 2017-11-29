@@ -441,4 +441,6 @@ namespace Microsoft.AspNet.Identity.EntityFramework
             return base.ValidateEntity(entityEntry, items);
         }
     }
+
+
 }

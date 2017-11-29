@@ -94,6 +94,7 @@
   <ItemGroup>
     <None Include="35MSSharedLib1024.snk" />
     <None Include="App.config" />
+    <None Include="Microsoft.AspNet.Identity.EntityFramework.dgml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

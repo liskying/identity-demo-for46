@@ -3,12 +3,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
 using identity_demo_for46.Models;
-using Microsoft.Owin.Security.WeChat;
-using Microsoft.Owin.Security.Tencent.QQ;
-using Microsoft.Owin.Security;
 
 namespace identity_demo_for46
 {
