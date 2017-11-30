@@ -5,6 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using identity_demo_for46.Models;
+using identity_demo_for46.App_Start;
+using System.Web.Mvc;
 
 namespace identity_demo_for46
 {
@@ -12,30 +14,86 @@ namespace identity_demo_for46
     {
         public void ConfigureAuth(IAppBuilder app)
         {
-            // 配置数据库上下文、用户管理器和登录管理器，以便为每个请求使用单个实例
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            //DI注入
+            BootstrapHelper.DIConfig();
 
-            // 使应用程序可以使用 Cookie 来存储已登录用户的信息
-            // 并使用 Cookie 来临时存储有关使用第三方登录提供程序登录的用户的信息
-            // 配置登录 Cookie
+            //Autofac中间件
+            app.UseAutofacMiddleware(BootstrapHelper.Container);
+
+            //Db上下文
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationDbContext>());
+
+            //用户管理器
+            app.CreatePerOwinContext<ApplicationUserManager>((options, context) =>
+            {
+                IDependencyResolver current = DependencyResolver.Current;
+
+                var store = current.GetService<IUserStore<ApplicationUser>>();
+                var manager = new ApplicationUserManager(store);
+                //用户验证器
+                manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = true
+                };
+
+                //密码验证器
+                manager.PasswordValidator = current.GetService<IIdentityValidator<string>>();
+
+                //用户锁定默认值
+                manager.UserLockoutEnabledByDefault = true;
+                manager.DefaultAccountLockoutTimeSpan = BootstrapHelper.TimeSpan;
+                manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+
+                //注册双因素登录：短信认证
+                manager.RegisterTwoFactorProvider("电话代码", current.GetService<PhoneNumberTokenProvider<ApplicationUser>>());
+
+                //注册双因素登录：邮箱认证
+                manager.RegisterTwoFactorProvider("电子邮件代码", current.GetService<EmailTokenProvider<ApplicationUser>>());
+
+                //邮箱安全码发送服务
+                manager.EmailService = current.GetService<SmsService>();
+                //短信服务
+                manager.SmsService = current.GetService<EmailService>();
+
+                var dataProtectionProvider = options.DataProtectionProvider;
+                if (dataProtectionProvider != null)
+                {
+                    manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                }
+                return manager;
+
+            });
+
+            //登录管理器
+            app.CreatePerOwinContext<ApplicationSignInManager>((options, context) =>
+            {
+                var signManager = DependencyResolver.Current.GetService<SignInManager<ApplicationUser, string>>() as ApplicationSignInManager;
+                signManager.UserManager = context.GetUserManager<ApplicationUserManager>();
+                signManager.AuthenticationManager = context.Authentication;
+                return signManager;
+            });
+
+            //应用内登录
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                    OnValidateIdentity = SecurityStampValidator
+                        .OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                         BootstrapHelper.TimeSpan, (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });
+
+            //应用外登录
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
+            //双因素登录
+            app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromDays(1));
 
-            // 此选项类似于在登录时提供的“记住我”选项。
+            //记住我
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // 取消注释以下行可允许使用第三方登录提供程序登录

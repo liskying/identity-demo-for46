@@ -3,11 +3,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using identity_demo_for46.Models;
 using MailKit.Net.Smtp;
 using MimeKit;
-using System.Web.Mvc;
 
 namespace identity_demo_for46
 {
@@ -64,87 +63,26 @@ namespace identity_demo_for46
     // 配置此应用程序中使用的应用程序用户管理器。UserManager 在 ASP.NET Identity 中定义，并由此应用程序使用。
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store,
-            IdentityFactoryOptions<ApplicationUserManager> options,
-            IIdentityMessageService smsService,
-            IIdentityMessageService emailService)
+        public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
-            //邮箱安全码发送服务
-            this.EmailService = emailService;
-            //短信服务
-            this.SmsService = smsService;
 
-            // 配置用户名的验证逻辑
-            this.UserValidator = new UserValidator<ApplicationUser>(this)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
-
-            // 配置密码的验证逻辑
-            this.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
-            };
-
-            // 配置用户锁定默认值
-            this.UserLockoutEnabledByDefault = true;
-            this.DefaultAccountLockoutTimeSpan = TimeSpan.FromDays(1);
-            this.MaxFailedAccessAttemptsBeforeLockout = 5;
-
-
-            // 注册双重身份验证提供程序。此应用程序使用手机和电子邮件作为接收用于验证用户的代码的一个步骤
-            // 你可以编写自己的提供程序并将其插入到此处。
-            this.RegisterTwoFactorProvider("电话代码", new PhoneNumberTokenProvider<ApplicationUser>
-            {
-                MessageFormat = "你的安全代码是 {0}"
-            });
-
-            this.RegisterTwoFactorProvider("电子邮件代码", new EmailTokenProvider<ApplicationUser>
-            {
-                Subject = "安全代码",
-                BodyFormat = "你的安全代码是 {0}"
-            });
-            
-            var dataProtectionProvider = options.DataProtectionProvider;
-            if (dataProtectionProvider != null)
-            {
-                this.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            }
-        }
-
-        public static ApplicationUserManager Create(
-            IdentityFactoryOptions<ApplicationUserManager> options,
-            IOwinContext context)
-        {
-            return DependencyResolver.Current.GetService<ApplicationUserManager>();
         }
     }
 
     // 配置要在此应用程序中使用的应用程序登录管理器。
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
-        public ApplicationSignInManager(ApplicationUserManager userManager,
-           IOwinContext context)
-            : base(userManager, context.Authentication)
+        public ApplicationSignInManager() : base(null, null) { }
+
+        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
+            : base(userManager, authenticationManager)
         {
         }
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
-        }
-
-        public static ApplicationSignInManager Create(
-            IdentityFactoryOptions<ApplicationSignInManager> options,
-            IOwinContext context)
-        {
-            return DependencyResolver.Current.GetService<ApplicationSignInManager>();
         }
     }
 }
