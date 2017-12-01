@@ -6,8 +6,12 @@ using System.Web.Mvc;
 
 namespace identity_demo_for46.Models
 {
+  
+
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser() { }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // 请注意，authenticationType 必须与 CookieAuthenticationOptions.AuthenticationType 中定义的相应项匹配
@@ -19,13 +23,8 @@ namespace identity_demo_for46.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("DefaultConnection")
         {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return DependencyResolver.Current.GetService<ApplicationDbContext>();
         }
     }
 }

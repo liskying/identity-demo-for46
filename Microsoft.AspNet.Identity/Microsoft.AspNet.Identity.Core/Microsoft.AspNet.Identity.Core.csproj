@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="35MSSharedLib1024.snk" />
+    <None Include="Aspnetidentity.Core.dgml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.zh-cn.resx">
